@@ -2,6 +2,7 @@ import os
 import shutil
 import subprocess
 #from pathlib import Path
+from .utils import get_temp_work_dir, extract_resources
 
 from PyQt6.QtCore import QThread, pyqtSignal
 
@@ -9,38 +10,44 @@ class ConverterThread(QThread):
     log_signal = pyqtSignal(str)
     done_signal = pyqtSignal()
 
-    def __init__(self, legacy_path, renewed_path, jar_path):
+    def __init__(self, legacy_path, renewed_path):
         super().__init__()
         self.legacy_path = legacy_path
         self.renewed_path = renewed_path
-        self.jar_path = jar_path
 
     def run(self):
-        jar_dir = os.path.dirname(os.path.abspath(self.jar_path))
         legacy_name = os.path.basename(self.legacy_path.rstrip("/\\"))
         renewed_name = os.path.basename(self.renewed_path.rstrip("/\\"))
 
+        temp_dir = get_temp_work_dir()
+        self.log_signal.emit(f"Using temporary working directory: {temp_dir}")
+
+        # Extract JAR + Conversions.json into it
+        jar_path, conv_path = extract_resources(temp_dir)
+        self.log_signal.emit("Extracted converter resources.")
+
         # Copy legacy world (BLOCKING)
-        temp_legacy = os.path.join(jar_dir, legacy_name)
+        temp_legacy = os.path.join(temp_dir, legacy_name)
         if os.path.exists(temp_legacy):
             shutil.rmtree(temp_legacy)
         self.log_signal.emit(f"Copying input world to {temp_legacy}...")
         shutil.copytree(self.legacy_path, temp_legacy)
 
         # Copy renewed world (BLOCKING)
-        temp_renewed = os.path.join(jar_dir, renewed_name)
+        temp_renewed = os.path.join(temp_dir, renewed_name)
         if os.path.exists(temp_renewed):
             shutil.rmtree(temp_renewed)
         self.log_signal.emit(f"Copying input world to {temp_renewed}...")
         shutil.copytree(self.renewed_path, temp_renewed)
 
         # Launch Java after copy completes
+        self.log_signal.emit("Launching converter...")
         process = subprocess.Popen(
-            ["java", "-jar", self.jar_path],
+            ["java", "-jar", jar_path],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
-            cwd=jar_dir
+            cwd=temp_dir
         )
         for line in process.stdout:
             self.log_signal.emit(line)

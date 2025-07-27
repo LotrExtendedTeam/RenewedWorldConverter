@@ -4,7 +4,6 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLin
 from pathlib import Path
 
 from .converter_thread import ConverterThread
-from .settings import JAR_PATH
 
 class ConverterGUI(QWidget):
     def __init__(self):
@@ -63,14 +62,13 @@ class ConverterGUI(QWidget):
             self.log_box.append("ERROR: Please select both input and output directories.")
             return
 
-        jar_dir = os.path.dirname(os.path.abspath(JAR_PATH))
         legacy_name = os.path.basename(legacy_path.rstrip("/\\"))
         renewed_name = os.path.basename(renewed_path.rstrip("/\\"))
 
         self.convert_button.setEnabled(False)
 
         # Use these temporary relative paths
-        self.thread = ConverterThread(legacy_path, renewed_path, JAR_PATH)
+        self.thread = ConverterThread(legacy_path, renewed_path)
         self.thread.log_signal.connect(self.append_log)
         self.thread.done_signal.connect(lambda: self.conversion_done())
         self.thread.start()
