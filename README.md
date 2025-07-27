@@ -1,5 +1,5 @@
 # RenewedWorldConverter
-This a user-friendly Python-based GUI wrapper around the Java [LotrWorldConverter](https://github.com/mist475/LotrModConverter_Public/tree/dev) project (by Mist475) to allow users to udpate their worlds from the Minecraft LOTR: Legacy mod to LOTR: Renewed
+This a user-friendly Python-based GUI wrapper around the Java [LotrWorldConverter](https://github.com/mist475/LotrModConverter_Public/tree/dev) project (by Mist475) to allow users to update their worlds from the Minecraft LOTR: Legacy mod to LOTR: Renewed
 
 LegacyWorldConverter-all.jar is an uber-jar with all required dependencies based on the latest code from Mist475's converter dev branch (as of 7/27/25).
 
