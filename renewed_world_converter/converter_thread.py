@@ -43,7 +43,7 @@ class ConverterThread(QThread):
         # Launch Java after copy completes
         self.log_signal.emit("Launching converter...")
         process = subprocess.Popen(
-            ["java", "-jar", jar_path],
+            ["java", "-jar", jar_path, "-s"],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,

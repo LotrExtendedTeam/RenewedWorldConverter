@@ -15,7 +15,7 @@ I plan to add support for PyInstaller as soon as possible to make a way to run i
 - [X] Conversion correctly works in a Temp folder on Windows
 - [ ] Setup PyInstaller to make a complete Windows executable wrapper for this converter
 - [ ] Auto copy the converted Legacy world to the same directory as the Renewed world was in
-- [ ] Create an updated silent version of LegacyWorldConverter-all.jar that only prints out progress
+- [X] Create an updated silent version of LegacyWorldConverter-all.jar that only prints out progress
 - [ ] Add a progress bar that listens to the output
 - [ ] Create an ExtendedConversions.json that adds support for Renewed Extended and include a checkbox to allow it to be used
 - [ ] Add a Welcome menu that explains you will need to create a World in Renewed to use as the basis of your conversion, includes information about the authors, and has the Renewed Extended Team logo.
