@@ -1,6 +1,6 @@
 import sys
 from PyQt6.QtWidgets import QApplication
-from .converter_gui import ConverterGUI
+from renewed_world_converter.converter_gui import ConverterGUI
 
 def main():
     app = QApplication(sys.argv)

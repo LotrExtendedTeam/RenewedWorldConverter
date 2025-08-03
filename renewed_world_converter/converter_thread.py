@@ -2,7 +2,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
-from .utils import get_temp_work_dir, extract_resources
+from renewed_world_converter.utils import get_temp_work_dir, extract_resources
 
 from PyQt6.QtCore import QThread, pyqtSignal
 

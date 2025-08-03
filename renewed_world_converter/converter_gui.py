@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLineEdit, QTextEdit, QLabel, QFileDialog
-from .converter_thread import ConverterThread
+from renewed_world_converter.converter_thread import ConverterThread
 
 class ConverterGUI(QWidget):
     def __init__(self):

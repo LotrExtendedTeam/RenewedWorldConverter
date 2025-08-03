@@ -3,7 +3,7 @@ import os
 import sys
 import shutil
 import tempfile
-from .settings import JAR_NAME, CONVERSIONS_FILE, TEMP_PREFIX
+from renewed_world_converter.settings import JAR_NAME, CONVERSIONS_FILE, TEMP_PREFIX
 
 def get_temp_work_dir():
     """
