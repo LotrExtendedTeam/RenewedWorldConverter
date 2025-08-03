@@ -1,7 +1,7 @@
 import os
 import shutil
 import subprocess
-#from pathlib import Path
+from pathlib import Path
 from .utils import get_temp_work_dir, extract_resources
 
 from PyQt6.QtCore import QThread, pyqtSignal
@@ -53,11 +53,12 @@ class ConverterThread(QThread):
             self.log_signal.emit(line)
         process.wait()
 
-        # TODO: Update to Copy _Converted world back to renewed saves folder
-        #output_folder = os.path.join(jar_dir, renewed_name + "_Converted")
-        #final_location = Path(self.renewed_path).parent.joinpath(legacy_name + "_Converted")
-        # if os.path.exists(self.output_path):
-        #   shutil.rmtree(self.output_path)
-        #shutil.copytree(temp_output, self.output_path)
+        #  Copy _Converted world back to the renewed saves folder
+        output_folder = os.path.join(temp_dir, legacy_name + "_Converted")
+        final_location = Path(self.renewed_path).parent.joinpath(legacy_name + "_Converted")
+        self.log_signal.emit(f"Copying {legacy_name}_Converted to {final_location}...")
+        if os.path.exists(final_location):
+           shutil.rmtree(final_location)
+        shutil.copytree(output_folder, final_location)
 
         self.done_signal.emit()
