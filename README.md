@@ -17,8 +17,15 @@ Conversions.json is also based on his latest from that date.
 - [ ] Print the output to a log file in Temp
 - [ ] Add support for CLI usage
 
-## Running locally
-I plan to add support for PyInstaller as soon as possible to make a way to run it from a single executable on Windows, but when developing/testing you can run it from outside the renewed_world_converter folder:
+## Installing packages & Running locally
+After you have Python installed make sure you create your virtual environment and install the requirements:
+```
+python -m venv .venv
+.venv\Scripts\activate  # (or source .venv/bin/activate on macOS/Linux)
+pip install -r requirements.txt
+```
+
+When developing/testing you can run it from outside the renewed_world_converter folder:
 
 ```python -m renewed_world_converter.__main__```
 
