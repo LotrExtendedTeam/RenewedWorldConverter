@@ -20,7 +20,7 @@ Conversions.json is also based on his latest from that date.
 ## Running locally
 I plan to add support for PyInstaller as soon as possible to make a way to run it from a single executable on Windows, but when developing/testing you can run it from outside the renewed_world_converter folder:
 
-```python -m renewed_world_converter.main```
+```python -m renewed_world_converter.__main__```
 
 ## Building executable with PyInstaller
 For production version (user-friendly and no debugging)

@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+from _winapi import CREATE_NO_WINDOW
 from pathlib import Path
 from renewed_world_converter.utils import get_temp_work_dir, extract_resources
 
@@ -47,7 +48,8 @@ class ConverterThread(QThread):
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
-            cwd=temp_dir
+            cwd=temp_dir,
+            creationflags=CREATE_NO_WINDOW
         )
         for line in process.stdout:
             self.log_signal.emit(line)
